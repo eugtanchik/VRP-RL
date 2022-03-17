@@ -11,7 +11,7 @@ class AttentionVRPActor(object):
         with tf.compat.v1.variable_scope(_scope + _name):
             # self.v: is a variable with shape [1 x dim]
             self.v = tf.compat.v1.get_variable('v', [1, dim],
-                                               initializer=tf.compat.v1.layers.xavier_initializer())
+                                               initializer=tf.compat.v1.keras.layers.xavier_initializer())
             self.v = tf.expand_dims(self.v, 2)
 
         self.emb_d = tf.compat.v1.layers.Conv1D(dim, 1, _scope=_scope + _name + '/emb_d')  # conv1d
@@ -87,7 +87,7 @@ class AttentionVRPCritic(object):
         with tf.compat.v1.variable_scope(_scope + _name):
             # self.v: is a variable with shape [1 x dim]
             self.v = tf.compat.v1.get_variable('v', [1, dim],
-                                               initializer=tf.compat.v1.layers.xavier_initializer())
+                                               initializer=tf.compat.v1.keras.layers.xavier_initializer())
             self.v = tf.expand_dims(self.v, 2)
 
         self.emb_d = tf.compat.v1.layers.Conv1D(dim, 1, _scope=_scope + _name + '/emb_d')  # conv1d
@@ -101,14 +101,14 @@ class AttentionVRPCritic(object):
 
     def __call__(self, query, ref, env):
         """
-        This function gets a query tensor and ref rensor and returns the logit op.
+        This function gets a query tensor and ref tensor and returns the logit op.
         Args: 
             query: is the hidden state of the decoder at the current
                 time step. [batch_size x dim]
             ref: the set of hidden states from the encoder. 
                 [batch_size x max_time x dim]
 
-            env: keeps demand ond load values and help decoding. Also it includes mask.
+            env: keeps demand ond load values and help decoding. Also, it includes mask.
                 env.mask: a matrix used for masking the logits and glimpses. It is with shape
                          [batch_size x max_time]. Zeros in this matrix means not-masked nodes. Any 
                          positive number in this mask means that the node cannot be selected as next 
