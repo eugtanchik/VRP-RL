@@ -96,7 +96,7 @@ if __name__ == "__main__":
     if random_seed is not None and random_seed > 0:
         prt.print_out("# Set random seed to %d" % random_seed)
         np.random.seed(random_seed)
-        tf.set_random_seed(random_seed)
+        tf.random.set_seed(random_seed)
     tf.reset_default_graph()
 
     main(args, prt)
