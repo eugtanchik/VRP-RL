@@ -36,7 +36,7 @@ def load_task_specific_components(task):
 
 
 def main(args, prt):
-    config = tf.ConfigProto()
+    config = tf.compat.v1.ConfigProto()
     config.gpu_options.allow_growth = True
     sess = tf.Session(config=config)
 
