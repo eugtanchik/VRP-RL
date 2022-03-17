@@ -87,7 +87,7 @@ class AttentionVRPCritic(object):
         with tf.compat.v1.variable_scope(_scope + _name):
             # self.v: is a variable with shape [1 x dim]
             self.v = tf.compat.v1.get_variable('v', [1, dim],
-                                               initializer=tf.contrib.layers.xavier_initializer())
+                                               initializer=tf.compat.v1.layers.xavier_initializer())
             self.v = tf.expand_dims(self.v, 2)
 
         self.emb_d = tf.compat.v1.layers.Conv1D(dim, 1, _scope=_scope + _name + '/emb_d')  # conv1d
