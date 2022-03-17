@@ -38,7 +38,7 @@ def load_task_specific_components(task):
 def main(args, prt):
     config = tf.compat.v1.ConfigProto()
     config.gpu_options.allow_growth = True
-    sess = tf.Session(config=config)
+    sess = tf.compat.v1.Session(config=config)
 
     # load task specific classes
     DataGenerator, Env, reward_func, AttentionActor, AttentionCritic = \
