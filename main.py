@@ -97,6 +97,6 @@ if __name__ == "__main__":
         prt.print_out("# Set random seed to %d" % random_seed)
         np.random.seed(random_seed)
         tf.random.set_seed(random_seed)
-    tf.reset_default_graph()
+    tf.compat.v1.reset_default_graph()
 
     main(args, prt)
