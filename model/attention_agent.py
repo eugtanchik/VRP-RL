@@ -382,17 +382,20 @@ class RLAgent(object):
 
         data = self.dataGen.get_test_all()
         start_time = time.time()
-        R, v, logprobs, actions, idxs, batch, _ = self.sess.run(summary,
-                                                                feed_dict={self.env.input_data: data,
-                                                                           self.decodeStep.dropout: 0.0})
+        R, v, logprobs, actions, idxs, batch, _ = self.sess.run(
+            summary,
+            feed_dict={
+                self.env.input_data: data,
+                self.decodeStep.dropout: 0.0
+            }
+        )
         R = np.concatenate(np.split(np.expand_dims(R, 1), beam_width, axis=0), 1)
         R = np.amin(R, 1, keepdims=False)
 
         end_time = time.time() - start_time
-        self.prt.print_out('Average of {} in batch-mode: {} -- std {} -- time {} s'.format(eval_type, \
-                                                                                           np.mean(R),
-                                                                                           np.sqrt(np.var(R)),
-                                                                                           end_time))
+        self.prt.print_out('Average of {} in batch-mode: {} -- std {} -- time {} s'.format(
+            eval_type, np.mean(R), np.sqrt(np.var(R)), end_time)
+        )
 
     def inference(self, infer_type='batch'):
         if infer_type == 'batch':
