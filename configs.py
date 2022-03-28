@@ -31,7 +31,7 @@ def ParseParams():
 
     # Data
     parser.add_argument('--task', default='vrp10', help="Select the task to solve; i.e. tsp10")
-    parser.add_argument('--batch_size', default=64, type=int, help='Batch size in training')
+    parser.add_argument('--batch_size', default=128, type=int, help='Batch size in training')
     parser.add_argument('--n_train', default=260000, type=int, help='Number of training steps')
     parser.add_argument('--test_size', default=1000, type=int, help='Number of problems in test set')
 
@@ -47,7 +47,7 @@ def ParseParams():
                         help='Number of time steps the decoder runs before stopping')
     parser.add_argument('--n_glimpses', default=0, type=int, help='Number of glimpses to use in the attention')
     parser.add_argument('--tanh_exploration', default=10., type=float,
-                        help='Hyperparam controlling exploration in the net by scaling the tanh in the softmax')
+                        help='Hyperparameter controlling exploration in the net by scaling the tanh in the softmax')
     parser.add_argument('--use_tanh', type=str2bool, default=False, help='')
     parser.add_argument('--mask_glimpses', type=str2bool, default=True, help='')
     parser.add_argument('--mask_pointer', type=str2bool, default=True, help='')
@@ -70,7 +70,7 @@ def ParseParams():
 
     # Misc
     parser.add_argument('--stdout_print', default=True, type=str2bool, help='print control')
-    parser.add_argument("--gpu", default='3', type=str, help="gpu number.")
+    parser.add_argument("--gpu", default='0', type=str, help="gpu number.")
     parser.add_argument('--log_interval', default=200, type=int, help='Log info every log_step steps')
     parser.add_argument('--test_interval', default=200, type=int, help='test every test_interval steps')
     parser.add_argument('--save_interval', default=10000, type=int, help='save every save_interval steps')
